@@ -2,6 +2,10 @@
     import deputados from "$lib/data/deputados.json";
 
     const currentYear = 2022;
+
+    export let data;
+
+    console.log(data);
 </script>
 
 <div class="flex flex-col gap-12">

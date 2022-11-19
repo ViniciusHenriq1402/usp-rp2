@@ -1,31 +1,66 @@
 <script>
     import "../app.css";
+
+    import SidebarLink from "$lib/components/SidebarLink.svelte";
+
+    let sidebar = {
+        title: "Câmara dos Gastos",
+        links: [
+            { name: "Início", icon: "home", href: "/" },
+            { name: "Ranking", icon: "ranking-star", href: "/ranking" },
+            { name: "Gráficos", icon: "chart-line", href: "/graficos" },
+            { name: "Busca avançada", icon: "search", href: "/busca" },
+        ],
+    };
 </script>
 
-<nav class="flex justify-between py-6 px-10 text-xl bg-gray-900 text-gray-50">
-    <a class="hover:text-orange-500" href="/">Câmara dos Gastos</a>
+<div class="flex">
+    <div class="sidebar">
+        <div class="flex justify-center">
+            <img 
+                src="/camara-logo.jpg"
+                class="w-32 rounded"
+                alt="Gastos na Cãmarada dos Deputados"/>
+        </div>
 
-    <div>
-        <a href="sobre">
-            Sobre
-        </a>
+        <div class="sidebar-title">{ sidebar.title }</div>
+        <div class="sidebar-links">
+            {#each sidebar.links as link}
+                <SidebarLink {...link} />
+            {/each}
+        </div>
     </div>
-</nav>
 
-<main class="px-20 py-10">
-    <slot />
-</main>
+    <div class="flex-1 px-12 py-6 bg-zinc-100 text-zinc-700">
+        <slot />
+    </div>
+</div>
 
 <style>
-    div a {
-        @apply px-8;
+    .sidebar {
+        @apply
+            flex
+            flex-col
+            top-0
+            gap-4
+            sticky
+            h-screen
+            p-6
+            bg-zinc-900;
     }
 
-    div a:hover {
-        @apply underline text-orange-500;
+    .sidebar-title {
+        @apply
+            pb-4
+            text-center
+            text-zinc-50
+            font-bold
+            text-lg
+            border-b
+            border-zinc-600;
     }
 
-    div a:not(:last-child) {
-        @apply border-r;
+    .sidebar-links {
+        @apply flex flex-col gap-4;
     }
 </style>

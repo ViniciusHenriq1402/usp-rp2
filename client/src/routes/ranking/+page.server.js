@@ -3,6 +3,7 @@ import db from "$lib/config/db.js";
 export async function load({ params }) {
     const deputados = await db.all(`
         SELECT
+            deputados.id,
             nome,
             email,
             sigla_uf,

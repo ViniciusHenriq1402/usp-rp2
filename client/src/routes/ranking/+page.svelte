@@ -25,9 +25,9 @@
         Ranking de despesas no ano de 2022
     </div>
 
-    <div class="flex flex-col gap-4 max-h-[30rem] overflow-y-auto">
-        {#each curDeputados as deputado }
-            <DeputadoCard {...deputado} />
+    <div class="flex flex-col gap-4" >
+        {#each curDeputados as deputado, i}
+            <DeputadoCard { ...deputado} colocacao={i+1} />
         {/each}
 
         <InfiniteLoading 
@@ -35,7 +35,7 @@
             on:infinite={loadMore}
         >
             <div slot="noMore" class="text-center text-gray-500">
-                Não há mais deputados
+                Fim do ranking. Deputados que não tiveram despesas não aparecem 
             </div>
         </InfiniteLoading>
     </div>

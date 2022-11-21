@@ -1,4 +1,6 @@
 <script>
+    export let colocacao;
+    export let id;
     export let nome;
     export let email;
     export let sigla_uf;
@@ -7,7 +9,7 @@
     export let total_despesas;
 </script>
 
-<div class="flex rounded-l-2xl bg-zinc-50 border-r-8 border-amber-300">
+<a href="/deputado/{id}" class="flex rounded-l-2xl bg-zinc-50 border-r-8 border-amber-300 hover:bg-amber-100">
     <img src={url_foto} alt={nome} class="w-20 rounded-l-2xl shadow" />
 
     <div class="flex flex-col px-6 py-2">
@@ -29,4 +31,8 @@
             <div>UF: {sigla_uf}</div>
         </div>
     </div>
-</div>
+
+    <div class="ml-auto self-center mr-8 text-6xl font-bold text-zinc-300">
+        #{colocacao}
+    </div>
+</a>

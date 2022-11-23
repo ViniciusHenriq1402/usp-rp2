@@ -9,6 +9,11 @@
     let curDeputados = data.deputados.slice(0, threshold);
 
     function loadMore({ detail: { loaded, complete } }) {
+        if (deputadoSearch && deputadoSearch.length > 0) {
+            complete();
+            return;
+        }
+
         threshold += 10;
         curDeputados = data.deputados.slice(0, threshold);
 
@@ -18,6 +23,14 @@
             loaded();
         }
     }
+
+    let deputadoSearch;
+
+    function searchDeputados() {
+        curDeputados = data.deputados.filter((deputado) => {
+            return deputado.nome.toLowerCase().includes(deputadoSearch.toLowerCase());
+        });
+    }
 </script>
 
 <div class="flex flex-col gap-4">
@@ -25,10 +38,26 @@
         Ranking de despesas no ano de 2022
     </div>
 
+    <div class="flex items-strech">
+        <div class="bg-amber-400 py-2 px-3 rounded-l-xl">
+            <i class="fa-solid fa-search"></i>
+        </div>
+        <input
+            bind:value={deputadoSearch}
+            on:input={searchDeputados}
+            type="text"
+            class="w-full rounded-r-xl border shadow-sm p-2"
+            placeholder="Procure pelo nome de um deputado..." />
+    </div>
+
     <div class="flex flex-col gap-4" >
-        {#each curDeputados as deputado, i}
-            <DeputadoCard { ...deputado} colocacao={i+1} />
-        {/each}
+        {#if curDeputados.length === 0}
+            <p>Nenhum deputado encontrado :(</p>
+        {:else}
+            {#each curDeputados as deputado}
+                <DeputadoCard { ...deputado} />
+            {/each}
+        {/if}
 
         <InfiniteLoading 
             spinner="spiral"

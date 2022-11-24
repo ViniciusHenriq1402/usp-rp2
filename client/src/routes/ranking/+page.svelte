@@ -38,6 +38,18 @@
         Ranking de despesas no ano de 2022
     </div>
 
+    {#if data.filtros.length > 0}
+        <div class="flex gap-2 items-center">
+            <span>Filtrado por:</span>
+
+            {#each data.filtros as filtro}
+                <span class="bg-gray-200 px-2 py-1 border border-zinc-400 rounded-full">
+                    {filtro}
+                </span>
+            {/each}
+        </div>
+    {/if}
+
     <div class="flex items-strech">
         <div class="bg-amber-400 py-2 px-3 rounded-l-xl">
             <i class="fa-solid fa-search"></i>
@@ -66,6 +78,9 @@
             <div slot="noMore" class="text-center text-gray-500">
                 Fim do ranking. Deputados que não tiveram despesas não aparecem 
             </div>
+
+            <div slot="noResults" class="text-center text-gray-500"></div>
         </InfiniteLoading>
     </div>
 </div>
+

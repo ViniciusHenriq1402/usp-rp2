@@ -4,18 +4,21 @@
 
     export let data;
 
-    let threshold = 10;
+    // -------------------------------------------------------------------------
+    // Carregamento do conteúdo da página conforme scroll
 
-    let curDeputados = data.deputados.slice(0, threshold);
+    let limit = 10;
+
+    let curDeputados = data.deputados.slice(0, limit);
 
     function loadMore({ detail: { loaded, complete } }) {
-        if (deputadoSearch && deputadoSearch.length > 0) {
+        if (deputadoSearch) {
             complete();
             return;
         }
 
-        threshold += 10;
-        curDeputados = data.deputados.slice(0, threshold);
+        limit += 10;
+        curDeputados = data.deputados.slice(0, limit);
 
         if (curDeputados.length >= data.deputados.length) {
             complete();
@@ -23,6 +26,9 @@
             loaded();
         }
     }
+
+    // -------------------------------------------------------------------------
+    // Busca simples
 
     let deputadoSearch;
 
@@ -79,7 +85,7 @@
                 Fim do ranking. Deputados que não tiveram despesas não aparecem 
             </div>
 
-            <div slot="noResults" class="text-center text-gray-500"></div>
+            <div slot="noResults" />
         </InfiniteLoading>
     </div>
 </div>

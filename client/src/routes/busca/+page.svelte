@@ -12,7 +12,7 @@
 
     <label>
         <span>Unidade Federal ({data.unidadesFederais.length})</span>
-        <select name="unidadeFederal">
+        <select name="sigla_uf">
             <option value="">Não filtrar</option>
             {#each data.unidadesFederais as uf}
                 <option value={uf["sigla"]}>{uf["sigla"]}</option>
@@ -22,7 +22,7 @@
 
     <label>
         <span>Tipo de despesa ({data.tiposDespesa.length})</span>
-        <select name="tipoDespesa">
+        <select name="tipo_despesa">
             <option value="">Não filtrar</option>
             {#each data.tiposDespesa as tipo}
                 <option value={tipo["nome"]}>{tipo["nome"]}</option>
@@ -32,7 +32,7 @@
 
     <label>
         <span>Partido ({data.partidos.length})</span>
-        <select name="partido">
+        <select name="sigla_partido">
             <option value="">Não filtrar</option>
             {#each data.partidos as partido}
                 <option value={partido["sigla"]}>{partido["sigla"]}</option>

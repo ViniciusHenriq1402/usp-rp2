@@ -1,20 +1,8 @@
-import db from "$lib/config/db.js";
+import db from "$lib/server/db.js";
+import { sqlDeputado, sqlDespesas } from "$lib/server/sql.js";
 
 export async function load({ params }) {
-    const deputado = await db.all(`
-       SELECT 
-            deputados.id,
-            nome,
-            email,
-            sigla_uf,
-            sigla_partido,
-            url_foto,
-            SUM(valor_liquido) AS total_despesas
-        FROM deputados
-        INNER JOIN despesas
-        ON deputados.id = despesas.id_deputado
-        WHERE deputados.id = ${params.id}
-    `);
+    const deputado = await db.all(sqlDeputado(params.id));
     
     /**
      * Note que group_concat retorna uma string com os valores separados por
@@ -29,20 +17,7 @@ export async function load({ params }) {
      *     valores: "1000,2000"
      * }
      */
-    const despesas = await db.all(`
-        SELECT
-            tipo_despesa,
-            group_concat(mes, '$') AS meses,
-            group_concat(despesa, '$') AS valores 
-        FROM (
-            SELECT mes, tipo_despesa, SUM(valor_liquido) AS despesa
-            FROM despesas
-            WHERE id_deputado = ${params.id}
-            GROUP BY tipo_despesa, mes
-            ORDER BY mes ASC
-        )
-        GROUP BY tipo_despesa;
-    `);
+    const despesas = await db.all(sqlDespesas(param.id));
 
     formatDespesas(despesas);
 

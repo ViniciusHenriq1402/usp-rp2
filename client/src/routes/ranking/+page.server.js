@@ -4,8 +4,6 @@ import { sqlFilteredDeputados } from "$lib/server/sql";
 export async function load({ url }) {
     const deputados = await db.all(sqlFilteredDeputados(url.searchParams));
 
-    console.log(url.searchParams);
-        
     return {
         deputados,
         filtros: getFiltros(url.searchParams)

@@ -17,7 +17,7 @@ export async function load({ params }) {
      *     valores: "1000,2000"
      * }
      */
-    const despesas = await db.all(sqlDespesas(param.id));
+    const despesas = await db.all(sqlDespesas(params.id));
 
     formatDespesas(despesas);
 

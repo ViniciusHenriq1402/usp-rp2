@@ -18,6 +18,5 @@ function getFiltros(urlParams) {
             filtros.push(value);
         }
     });
-
     return filtros;
 }

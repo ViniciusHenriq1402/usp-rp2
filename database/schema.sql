@@ -17,3 +17,9 @@ CREATE TABLE despesas (
     FOREIGN KEY (id_deputado) REFERENCES deputados (id),
     UNIQUE (id, id_deputado)
 );
+
+
+CREATE TABLE UF (
+    sigla_uf TEXT PRIMARY KEY,
+    z_score REAL
+);

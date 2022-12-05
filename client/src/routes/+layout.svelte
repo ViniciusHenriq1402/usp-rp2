@@ -28,9 +28,7 @@
             {#each sidebar.links as link}
                 <SidebarLink {...link} />
             {/each}
-            
         </div>
-        
     </div>
 
     <div class="flex-1 px-12 py-6 bg-zinc-100 text-zinc-700 h-screen overflow-y-auto">

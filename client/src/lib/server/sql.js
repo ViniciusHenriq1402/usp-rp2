@@ -112,3 +112,12 @@ export function sqlDespesas(id) {
         GROUP BY tipo_despesa;
     `;
 }
+
+export function sqlZScore() {
+    return `
+        SELECT 
+            *
+        FROM UF
+        `
+    ;
+}

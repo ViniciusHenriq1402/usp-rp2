@@ -47,3 +47,6 @@ class RequestManager:
     def get_despesas(self, deputado):
         curYear = datetime.now().year
         return self.get(f'/deputados/{deputado["id"]}/despesas?ano={curYear}&itens=100')
+
+    def get_ufs(self):
+        return self.get("/referencias/deputados/siglaUF")

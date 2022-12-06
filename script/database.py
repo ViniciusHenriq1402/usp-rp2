@@ -108,3 +108,12 @@ class Database:
     def close(self):
         # Note que caso o buffer não esteja vazio, seus dados serão perdidos
         self.conn.close() 
+
+    def selectGastos(self, uf):
+        cursor = self.cur.execute("SELECT sum(despesas.valor_liquido) FROM despesas INNER JOIN deputados ON despesas.id_deputado = deputados.id WHERE deputados.sigla_uf =?", (uf,))
+        return cursor.fetchone()[0]
+
+    def insert_zscore(self, uf, zscore):
+        self.cur.execute("INSERT INTO UF (sigla_uf, z_score) VALUES (?, ?)", (uf, zscore))
+        self.conn.commit()
+        self.numWrites += 1 

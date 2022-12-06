@@ -8,7 +8,7 @@
         links: [
             { name: "Início", icon: "home", href: "/" },
             { name: "Ranking", icon: "ranking-star", href: "/ranking" },
-            { name: "Gráficos", icon: "chart-line", href: "/graficos" },
+            { name: "Z-Score", icon: "percentage", href: "/zscore" },
             { name: "Busca avançada", icon: "search", href: "/busca" },
         ],
     };

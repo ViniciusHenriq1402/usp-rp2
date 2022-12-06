@@ -18,5 +18,3 @@ jobs:
         script: |
           cd ${{ secrets.REPO_PATH }}
           git pull origin master
-          cd client
-          npm run dev

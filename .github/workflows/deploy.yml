@@ -19,4 +19,4 @@ jobs:
           cd ${{ secrets.REPO_PATH }}
           git pull origin master
           cd client
-          vite run dev
+          npm vite run dev
